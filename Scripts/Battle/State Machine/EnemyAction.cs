@@ -1,27 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAction : BattleAbstract
 {
     public override void EnterState(BattleController battle)
     {
+        if (EnemyController.instance.activeCards.Count == 0)
+        {
+            EnemyController.instance.SetUpDeck();
+        }
 
         battle.RefillMana(1);
 
-        //if (battle.playerAction.turn == 0)
-        //{
-        //    DeckController.instance.DrawMultiple(battle.playerAction.startingHand);
-        //}
-        //else
-        //{
-        //    DeckController.instance.DrawCard();
         if (battle.enemyCurrentMana < battle.enemyMaxMana)
         {
-            battle.enemyCurrentMana++;
+            battle.enemyCurrentMana += 27;
         }
-        //}
 
-        Debug.Log("Skip Enemy Action");
-        battle.SwitchState(battle.enemyAttack);
+        EnemyController.instance.StartEnemyAction();
     }
     public override void LogicsUpdate(BattleController battle)
     {

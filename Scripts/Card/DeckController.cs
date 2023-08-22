@@ -11,7 +11,7 @@ public class DeckController : MonoBehaviour
     }
     // ------------------------------------ //
     [SerializeField] List<CardSO> deck = new List<CardSO>();
-    List<CardSO> activeCards = new List<CardSO>();
+    public List<CardSO> activeCards = new List<CardSO>();
     [SerializeField] Card card;
 
     public Transform field;
@@ -19,15 +19,11 @@ public class DeckController : MonoBehaviour
     void Start()
     {
         SetUpDeck();
-
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.T)) 
-        {
-            DrawCard();
-        }
+        
     }
 
     public void SetUpDeck()

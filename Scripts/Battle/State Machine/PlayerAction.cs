@@ -6,7 +6,16 @@ public class PlayerAction : BattleAbstract
     public int turn;
     public override void EnterState(BattleController battle)
     {
+        if(DeckController.instance.activeCards.Count == 0)
+        {
+            DeckController.instance.SetUpDeck();
+        }
+
         battle.RefillMana(0);
+
+        BattleController.instance.drawManaCost = 2;
+        UIController.instance.manaDrawButton.SetActive(true);
+        UIController.instance.endTurnButton.SetActive(true);
 
         if (turn == 0)
         {
@@ -17,20 +26,18 @@ public class PlayerAction : BattleAbstract
             DeckController.instance.DrawCard();
             if (battle.playerCurrentMana < battle.playerMaxMana)
             {
-                battle.playerCurrentMana++;
+                battle.playerCurrentMana += 27;
             }
         }
 
     }
     public override void LogicsUpdate(BattleController battle)
     {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            battle.SwitchState(battle.playerAttack);
-        }
+
     }
     public override void ExitState(BattleController battle)
     {
-
+        UIController.instance.manaDrawButton.SetActive(false);
+        UIController.instance.endTurnButton.SetActive(false);
     }
 }

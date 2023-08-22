@@ -753,7 +753,7 @@ Transform:
   m_Children:
   - {fileID: 4169024017832356220}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &273824764918461840
 BoxCollider:
@@ -774,8 +774,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.5934663, y: 0.10297346, z: 4.9780345}
-  m_Center: {x: -0.018016577, y: 0.0036764145, z: 0.013843298}
+  m_Size: {x: 3.5505052, y: 0.10297346, z: 4.0810924}
+  m_Center: {x: -0.03952813, y: 0.0036764145, z: -0.07461476}
 --- !u!114 &7406616910681406258
 MonoBehaviour:
   m_ObjectHideFlags: 0

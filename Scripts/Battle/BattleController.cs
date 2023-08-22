@@ -9,6 +9,11 @@ public class BattleController : MonoBehaviour
     {
         instance = this;
         drawManaCost = 2;
+
+        playerCurrentLP = playerLifePoints;
+
+        enemyCurrentLP = enemyLifePoints;
+        enemyCurrentMana = enemyStartMana;
     }
     // ------------------------------------ //
 
@@ -35,15 +40,8 @@ public class BattleController : MonoBehaviour
     //Battle
     public Transform discardPile;
 
-
     void Start()
     {
-        playerCurrentLP = playerLifePoints;
-
-        enemyCurrentLP = enemyLifePoints;
-        enemyCurrentMana = enemyStartMana;
-        UIController.instance.UpdataManaDisplay(1);
-
         currentState = playerAction;
         currentState.EnterState(this);
     }
@@ -72,7 +70,7 @@ public class BattleController : MonoBehaviour
                     playerCurrentMana = 0;
                 }
             }
-            UIController.instance.UpdataManaDisplay(key);
+            UIController.instance.UpdateManaDisplay(key);
         }
         if (key == 1)
         {
@@ -83,7 +81,7 @@ public class BattleController : MonoBehaviour
                     enemyCurrentMana = 0;
                 }
             }
-            UIController.instance.UpdataManaDisplay(key);
+            UIController.instance.UpdateManaDisplay(key);
         }
     }
 
@@ -95,7 +93,7 @@ public class BattleController : MonoBehaviour
             {
                 playerCurrentMana = playerStartMana;
             }
-            UIController.instance.UpdataManaDisplay(key);
+            UIController.instance.UpdateManaDisplay(key);
         }
         if (key == 1)
         {
@@ -103,7 +101,7 @@ public class BattleController : MonoBehaviour
             {
                 enemyCurrentMana = enemyStartMana;
             }
-            UIController.instance.UpdataManaDisplay(key);
+            UIController.instance.UpdateManaDisplay(key);
         }
     }
 
@@ -130,8 +128,15 @@ public class BattleController : MonoBehaviour
         UIController.instance.ShowDamageIndicator(key, amount);
     }
 
-    public void AdvanceTurn()
+    public void EndTurn()
     {
-        SwitchState(playerAttack);
+        if (playerAction.turn == 0)
+        {
+            SwitchState(enemyAction);
+        }
+        else
+        {
+            SwitchState(playerAttack);
+        }
     }
 }

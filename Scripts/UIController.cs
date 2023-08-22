@@ -23,7 +23,8 @@ public class UIController : MonoBehaviour
     [Header("Battle")]
     [SerializeField] TMP_Text manaCost;
     [SerializeField] TMP_Text turn;
-    [SerializeField] GameObject manaWarning, manaDrawButton;
+    [SerializeField] GameObject manaWarning;
+    public GameObject manaDrawButton, endTurnButton;
     [SerializeField] UIDamageIndicator playerDamageIndicator, enemyDamageIndicator;
     float manaWarningCounter;
     public Transform canvas;
@@ -55,7 +56,7 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void UpdataManaDisplay(int key)
+    public void UpdateManaDisplay(int key)
     {
         if (key == 0)
         {
