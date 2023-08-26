@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: '#1 8'
   m_EditorClassIdentifier: 
   cardOwner: 0
-  attack: 6
+  attack: 2
   health: 5
-  manaCost: 42
+  manaCost: 3
   cardName: '# 1'
   description: 11
   lore: 111

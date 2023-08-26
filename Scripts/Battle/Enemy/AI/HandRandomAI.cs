@@ -4,35 +4,93 @@ using UnityEngine;
 
 public class HandRandomAI : MonoBehaviour
 {
+    public int randomCard, randomPoint;
+    CardSO selectedCard;
+    CardPlacePoint selectedPoint;
     public IEnumerator EnemyActionCo()
     {
         Debug.Log("Hand Random AI");
 
         yield return new WaitForSeconds(1);
 
-        List<CardPlacePoint> cardPoints = new List<CardPlacePoint>();
-        cardPoints.AddRange(CardPointsController.instance.enemyPoints);
-
-        int randomPoint = Random.Range(0, cardPoints.Count);
-        CardPlacePoint selectedPoint = cardPoints[randomPoint];
-
-        cardPoints.RemoveAt(randomPoint);
-
-        int iteration = 0;
-        while (selectedPoint.enemyCard != null && cardPoints.Count > 0 && iteration < 100)
+        if (BattleController.instance.enemyAction.availablePoints.Count > 0)
         {
-            randomPoint = Random.Range(0, cardPoints.Count);
-            selectedPoint = cardPoints[randomPoint];
-            cardPoints.RemoveAt(randomPoint);
-            iteration++;
+            if(BattleController.instance.enemyAction.availableCards.Count > 0)
+            {
+                SelectCardAndPlace();
+
+                yield return new WaitForSeconds(1);
+
+                EnemyController.instance.PlayCard(selectedCard, selectedPoint);
+                BattleController.instance.enemyAction.availableCards.RemoveAt(randomCard);
+                BattleController.instance.enemyAction.availablePoints.RemoveAt(randomPoint);
+
+                yield return new WaitForSeconds(1);
+
+                if(BattleController.instance.enemyAction.availableCards.Count > 0)
+                {
+                    Debug.Log("Another One");
+                    yield return new WaitForSeconds(1);
+
+                    Debug.Log("Redefining Lists");
+                    yield return new WaitForSeconds(1);
+
+                    BattleController.instance.enemyAction.AvailablePointsAndCards();
+
+                    yield return new WaitForSeconds(1);
+                    EnemyController.instance.StartEnemyAction();
+                }
+                else
+                {
+                    Debug.Log("All Cards Placed");
+                    BattleController.instance.SwitchState(BattleController.instance.enemyAttack);
+                }
+
+                //if (BattleController.instance.enemyAction.availableCards.Count == 0)
+                //{
+                //    Debug.Log("All Cards Placed");
+                //    BattleController.instance.SwitchState(BattleController.instance.enemyAttack);
+                //}
+                //else
+                //{
+                //    Debug.Log("Another One");
+                //    yield return new WaitForSeconds(1);
+
+                //    Debug.Log("Redefining Lists");
+                //    yield return new WaitForSeconds(1);
+
+                //    BattleController.instance.enemyAction.AvailablePoints();
+                //    BattleController.instance.enemyAction.AvailableCards();
+
+                //    yield return new WaitForSeconds(1);
+                //    EnemyController.instance.StartEnemyAction();
+                //}
+            }
+            else
+            {
+                Debug.Log("No Available Cards");
+
+                BattleController.instance.SwitchState(BattleController.instance.enemyAttack);
+            }
         }
+        else
+        {
+            Debug.Log("No Available Points");
 
-        yield return new WaitForSeconds(1);
+            BattleController.instance.SwitchState(BattleController.instance.enemyAttack);
+        }
+    }
 
-        EnemyController.instance.selectedCard = EnemyController.instance.CardToPlay();
-        EnemyController.instance.PlayCard(EnemyController.instance.selectedCard, selectedPoint);
+    public void SelectCardAndPlace()
+    {
+        randomCard = Random.Range(0, BattleController.instance.enemyAction.availableCards.Count);
+        selectedCard = BattleController.instance.enemyAction.availableCards[randomCard];
 
-        yield return new WaitForSeconds(1f);
-        BattleController.instance.SwitchState(BattleController.instance.enemyAttack);
+        Debug.Log("Selectedcard " + selectedCard);
+
+        randomPoint = Random.Range(0, BattleController.instance.enemyAction.availablePoints.Count);
+        selectedPoint = BattleController.instance.enemyAction.availablePoints[randomPoint];
+
+        Debug.Log("Selectedplace " + selectedPoint);
     }
 }

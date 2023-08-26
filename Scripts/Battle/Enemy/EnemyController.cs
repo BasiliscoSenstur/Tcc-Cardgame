@@ -18,15 +18,15 @@ public class EnemyController : MonoBehaviour
     public Transform spawnPoint, placeRotation;
 
     [Header("AI")]
-    CardRandomAI cardRandomAI;
-    HandRandomAI handRandomAI;
-    OffensiveAI offensiveAI;
-    DefensiveAI defensiveAI;
+    [HideInInspector] public CardRandomAI cardRandomAI;
+    [HideInInspector] public HandRandomAI handRandomAI;
+    [HideInInspector] public OffensiveAI offensiveAI;
+    [HideInInspector] public DefensiveAI defensiveAI;
     public enum EnemyAI { cardRandom, handRandom, offensiveAI, defensiveAI }
     public EnemyAI enemyAI;
 
-    List<CardSO> cardsInEnemyHand = new List<CardSO>();
-    public int starHandSize;
+    public List<CardSO> cardsInEnemyHand = new List<CardSO>();
+    public int startHandSize;
     public CardSO selectedCard = null;
 
     void Start()
@@ -91,9 +91,9 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    void SetUpHand()
+    public void SetUpHand()
     {
-        for (int i = 0; i < starHandSize; i++)
+        for (int i = 0; i < startHandSize; i++)
         {
             if(activeCards.Count == 0)
             {
@@ -125,7 +125,10 @@ public class EnemyController : MonoBehaviour
 
         BattleController.instance.SpendMana(1, newEnemyCard.data.manaCost);
 
-        cardsInEnemyHand.RemoveAt(0);
+        if (cardsInEnemyHand.Count > 0)
+        {
+            cardsInEnemyHand.RemoveAt(0);
+        }
     }
 
     //Retorna um item do tipo CardSO

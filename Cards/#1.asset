@@ -15,7 +15,7 @@ MonoBehaviour:
   cardOwner: 0
   attack: 3
   health: 5
-  manaCost: 2
+  manaCost: 5
   cardName: '# 1'
   description: 11
   lore: 111

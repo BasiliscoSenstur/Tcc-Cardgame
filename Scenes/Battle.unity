@@ -665,8 +665,13 @@ MonoBehaviour:
     type: 3}
   spawnPoint: {fileID: 1390042484}
   placeRotation: {fileID: 1658333172}
+  cardRandomAI: {fileID: 0}
+  handRandomAI: {fileID: 0}
+  offensiveAI: {fileID: 0}
+  defensiveAI: {fileID: 0}
   enemyAI: 1
-  starHandSize: 5
+  cardsInEnemyHand: []
+  startHandSize: 5
   selectedCard: {fileID: 0}
 --- !u!114 &212715732
 MonoBehaviour:
@@ -692,6 +697,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 209892f9bf339954186b0673ff02e853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  randomCard: 0
+  randomPoint: 0
 --- !u!114 &212715734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3183,19 +3190,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9974e9c719d97b5429683fe6478df2db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLifePoints: 420
+  playerLifePoints: 20
   playerCurrentLP: 0
   playerCurrentMana: 0
-  playerStartMana: 108
-  playerMaxMana: 216
-  enemyLifePoints: 420
+  playerStartMana: 10
+  playerMaxMana: 27
+  enemyLifePoints: 20
   enemyCurrentLP: 0
   enemyCurrentMana: 0
-  enemyStartMana: 108
-  enemyMaxMana: 216
+  enemyStartMana: 10
+  enemyMaxMana: 27
   drawManaCost: 0
   STATE: 
   discardPile: {fileID: 36112610}
+  enemyCardPoints: []
+  availablePoints: []
+  availableCards: []
+  randomCard: 0
+  randomPoint: 0
 --- !u!1 &1048998432
 GameObject:
   m_ObjectHideFlags: 0

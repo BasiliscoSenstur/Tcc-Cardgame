@@ -26,7 +26,7 @@ public class PlayerAction : BattleAbstract
             DeckController.instance.DrawCard();
             if (battle.playerCurrentMana < battle.playerMaxMana)
             {
-                battle.playerCurrentMana += 27;
+                battle.playerCurrentMana++;
             }
         }
 
