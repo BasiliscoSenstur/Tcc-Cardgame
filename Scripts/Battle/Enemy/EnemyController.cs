@@ -21,8 +21,8 @@ public class EnemyController : MonoBehaviour
     [HideInInspector] public CardRandomAI cardRandomAI;
     [HideInInspector] public HandRandomAI handRandomAI;
     [HideInInspector] public OffensiveAI offensiveAI;
-    [HideInInspector] public DefensiveAI defensiveAI;
-    public enum EnemyAI { cardRandom, handRandom, offensiveAI, defensiveAI }
+    [HideInInspector] public DeffensiveAI defensiveAI;
+    public enum EnemyAI { cardRandom, handRandom, offensiveAI, deffensiveAI }
     public EnemyAI enemyAI;
 
     public List<CardSO> cardsInEnemyHand = new List<CardSO>();
@@ -36,13 +36,13 @@ public class EnemyController : MonoBehaviour
 
         if (enemyAI != EnemyAI.cardRandom)
         {
-            SetUpHand();
+            EnemyDraw();
         }
 
         cardRandomAI = GetComponent<CardRandomAI>();
         handRandomAI = GetComponent<HandRandomAI>();
         offensiveAI = GetComponent<OffensiveAI>();
-        defensiveAI = GetComponent<DefensiveAI>();
+        defensiveAI = GetComponent<DeffensiveAI>();
     }
 
     void Update()
@@ -85,14 +85,15 @@ public class EnemyController : MonoBehaviour
             StartCoroutine(offensiveAI.EnemyActionCo());
         }
 
-        if (enemyAI == EnemyAI.defensiveAI)
+        if (enemyAI == EnemyAI.deffensiveAI)
         {
             StartCoroutine(defensiveAI.EnemyActionCo());
         }
     }
 
-    public void SetUpHand()
+    public void EnemyDraw()
     {
+
         for (int i = 0; i < startHandSize; i++)
         {
             if(activeCards.Count == 0)

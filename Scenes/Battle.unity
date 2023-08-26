@@ -669,7 +669,7 @@ MonoBehaviour:
   handRandomAI: {fileID: 0}
   offensiveAI: {fileID: 0}
   defensiveAI: {fileID: 0}
-  enemyAI: 1
+  enemyAI: 2
   cardsInEnemyHand: []
   startHandSize: 5
   selectedCard: {fileID: 0}
@@ -723,6 +723,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cde6560b62e809e48b5b45f54417a89c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  randomCard: 0
+  randomPoint: 0
 --- !u!1 &225368261
 GameObject:
   m_ObjectHideFlags: 0
@@ -3204,10 +3206,9 @@ MonoBehaviour:
   STATE: 
   discardPile: {fileID: 36112610}
   enemyCardPoints: []
-  availablePoints: []
+  playerCardPoints: []
   availableCards: []
-  randomCard: 0
-  randomPoint: 0
+  offensivePlacePoints: []
 --- !u!1 &1048998432
 GameObject:
   m_ObjectHideFlags: 0

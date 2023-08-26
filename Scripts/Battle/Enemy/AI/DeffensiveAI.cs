@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OffensiveAI : MonoBehaviour
+public class DeffensiveAI : MonoBehaviour
 {
     public int randomCard, randomPoint;
     CardSO selectedCard;
@@ -10,12 +10,12 @@ public class OffensiveAI : MonoBehaviour
 
     public IEnumerator EnemyActionCo()
     {
-        Debug.Log("Offensive AI");
+        Debug.Log("Deffensive AI");
         yield return new WaitForSeconds(1f);
 
-        BattleController.instance.enemyAction.OffensivePlacePoints();
+        BattleController.instance.enemyAction.DeffensivePlacePoints();
 
-        if (BattleController.instance.enemyAction.offensivePlacePoints.Count > 0)
+        if (BattleController.instance.enemyAction.deffensivePlacePoints.Count > 0)
         {
             if (BattleController.instance.enemyAction.availableCards.Count > 0)
             {
@@ -23,12 +23,12 @@ public class OffensiveAI : MonoBehaviour
 
                 EnemyController.instance.PlayCard(selectedCard, selectedPoint);
                 BattleController.instance.enemyAction.availableCards.RemoveAt(randomCard);
-                BattleController.instance.enemyAction.offensivePlacePoints.RemoveAt(randomPoint);
+                BattleController.instance.enemyAction.deffensivePlacePoints.RemoveAt(randomPoint);
 
                 if (BattleController.instance.enemyAction.availableCards.Count > 0)
                 {
                     Debug.Log("Another One");
-                    BattleController.instance.enemyAction.OffensivePlacePoints();
+                    BattleController.instance.enemyAction.DeffensivePlacePoints();
 
                     yield return new WaitForSeconds(1);
                     EnemyController.instance.StartEnemyAction();
@@ -59,8 +59,8 @@ public class OffensiveAI : MonoBehaviour
 
         Debug.Log("Selected Card " + selectedCard);
 
-        randomPoint = Random.Range(0, BattleController.instance.enemyAction.offensivePlacePoints.Count);
-        selectedPoint = BattleController.instance.enemyAction.offensivePlacePoints[randomPoint];
+        randomPoint = Random.Range(0, BattleController.instance.enemyAction.deffensivePlacePoints.Count);
+        selectedPoint = BattleController.instance.enemyAction.deffensivePlacePoints[randomPoint];
 
         Debug.Log("Selected Place " + selectedPoint);
     }

@@ -40,15 +40,25 @@ public class BattleController : MonoBehaviour
     //Battle
     public Transform discardPile;
     public List<CardPlacePoint> enemyCardPoints;
-    public List<CardPlacePoint> availablePoints;
-    public List<CardSO> availableCards;
+    public List<CardPlacePoint> playerCardPoints;
 
-    public int randomCard, randomPoint;
+    //public List<CardPlacePoint> availablePoints;
+    //public List<CardSO> availableCards;
+
+    //public int randomCard, randomPoint;
+
+    //public List<CardPlacePoint> offensivePlacePoints;
+    //public List<CardPlacePoint> deffensivePlacePoints;
 
     void Start()
     {
+        //Enemy points
         enemyCardPoints = new List<CardPlacePoint>();
         enemyCardPoints.AddRange(CardPointsController.instance.enemyPoints);
+
+        //Player points
+        playerCardPoints = new List<CardPlacePoint>();
+        playerCardPoints.AddRange(CardPointsController.instance.playerPoints);
 
         currentState = playerAction;
         currentState.EnterState(this);
