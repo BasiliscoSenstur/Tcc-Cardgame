@@ -22,14 +22,13 @@ public class OffensiveAI : MonoBehaviour
                 SelectCardAndPlace();
 
                 EnemyController.instance.PlayCard(selectedCard, selectedPoint);
+
                 BattleController.instance.enemyAction.availableCards.RemoveAt(randomCard);
                 BattleController.instance.enemyAction.offensivePlacePoints.RemoveAt(randomPoint);
 
                 if (BattleController.instance.enemyAction.availableCards.Count > 0)
                 {
                     Debug.Log("Another One");
-                    BattleController.instance.enemyAction.OffensivePlacePoints();
-
                     yield return new WaitForSeconds(1);
                     EnemyController.instance.StartEnemyAction();
                 }

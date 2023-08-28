@@ -28,8 +28,6 @@ public class DeffensiveAI : MonoBehaviour
                 if (BattleController.instance.enemyAction.availableCards.Count > 0)
                 {
                     Debug.Log("Another One");
-                    BattleController.instance.enemyAction.DeffensivePlacePoints();
-
                     yield return new WaitForSeconds(1);
                     EnemyController.instance.StartEnemyAction();
                 }

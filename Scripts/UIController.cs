@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
+using System.Globalization;
 
 public class UIController : MonoBehaviour
 {
@@ -28,6 +31,10 @@ public class UIController : MonoBehaviour
     [SerializeField] UIDamageIndicator playerDamageIndicator, enemyDamageIndicator;
     float manaWarningCounter;
     public Transform canvas;
+
+    [Header("Battle End")]
+    public CanvasGroup endBattleScreen;
+    public TMP_Text battleResult;
 
     void Start()
     {
@@ -105,5 +112,19 @@ public class UIController : MonoBehaviour
             newIndicator.damageText.text = amount.ToString();
             newIndicator.gameObject.SetActive(true);
         }
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }    
+    public void PlayAgain()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentScene);
+    }    
+    public void SelectAnotherBattle()
+    {
+        SceneManager.LoadScene(1);
     }
 }

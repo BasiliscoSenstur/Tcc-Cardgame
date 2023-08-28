@@ -9,6 +9,8 @@ public class EnemyAction : BattleAbstract
     public List<CardPlacePoint> availablePoints;
     public List<CardSO> availableCards;
 
+    public EnemyCard enemyCard;
+
     //Offensive AI
     public List<CardPlacePoint> offensivePlacePoints;
 
@@ -24,14 +26,15 @@ public class EnemyAction : BattleAbstract
 
         if (EnemyController.instance.cardsInEnemyHand.Count == 0)
         {
-            EnemyController.instance.EnemyDraw();
+            if(battle.playerAction.turn == 0)
+            {
+                EnemyController.instance.EnemyDraw(1);
+            }
         }
 
         if (battle.playerAction.turn > 0)
         {
-            //Saca uma carta a cada turno após o primeiro
-            EnemyController.instance.cardsInEnemyHand.Add(EnemyController.instance.activeCards[0]);
-            EnemyController.instance.activeCards.RemoveAt(0);
+            EnemyController.instance.EnemyDraw(0);
         }
 
         battle.RefillMana(1);
@@ -41,8 +44,8 @@ public class EnemyAction : BattleAbstract
             battle.enemyCurrentMana++;
         }
 
-        //AI
-        if(EnemyController.instance.enemyAI == EnemyController.EnemyAI.handRandom)
+        //AI Places
+        if (EnemyController.instance.enemyAI == EnemyController.EnemyAI.handRandom)
         {
             HandRandomPlacePoints();
         }
@@ -62,14 +65,7 @@ public class EnemyAction : BattleAbstract
     }
     public override void LogicsUpdate(BattleController battle)
     {
-        //BattleController.instance.availablePoints = availablePoints;
-        //BattleController.instance.availableCards = availableCards;
 
-        //BattleController.instance.randomPoint = EnemyController.instance.handRandomAI.randomPoint;
-        //BattleController.instance.randomCard = EnemyController.instance.handRandomAI.randomCard;
-
-        //BattleController.instance.offensivePlacePoints = offensivePlacePoints;
-        //BattleController.instance.deffensivePlacePoints = deffensivePlacePoints;
     }
     public override void ExitState(BattleController battle)
     {
@@ -78,7 +74,8 @@ public class EnemyAction : BattleAbstract
 
     public void SelectCard()
     {
-        //Lista de possiveis cartas para colocação baseada no custo de mana
+
+        ////Lista de possiveis cartas para colocação baseada no custo de mana
         availableCards = new List<CardSO>();
         availableCards.Clear();
 
@@ -110,7 +107,6 @@ public class EnemyAction : BattleAbstract
     {
         offensivePlacePoints = new List<CardPlacePoint>();
         offensivePlacePoints.Clear();
-
 
         for (int i = 0; i < BattleController.instance.playerCardPoints.Count; i++)
         {

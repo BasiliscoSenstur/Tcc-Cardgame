@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
     [Header("Deck & Card")]
     [SerializeField] List<CardSO> deck = new List<CardSO>();
     public List<CardSO> activeCards = new List<CardSO>();
+
     public EnemyCard enemyCardToSpawn;
     public Transform spawnPoint, placeRotation;
 
@@ -26,6 +27,7 @@ public class EnemyController : MonoBehaviour
     public EnemyAI enemyAI;
 
     public List<CardSO> cardsInEnemyHand = new List<CardSO>();
+
     public int startHandSize;
     public CardSO selectedCard = null;
 
@@ -36,7 +38,7 @@ public class EnemyController : MonoBehaviour
 
         if (enemyAI != EnemyAI.cardRandom)
         {
-            EnemyDraw();
+            EnemyDraw(1);
         }
 
         cardRandomAI = GetComponent<CardRandomAI>();
@@ -44,7 +46,6 @@ public class EnemyController : MonoBehaviour
         offensiveAI = GetComponent<OffensiveAI>();
         defensiveAI = GetComponent<DeffensiveAI>();
     }
-
     void Update()
     {
         
@@ -57,14 +58,12 @@ public class EnemyController : MonoBehaviour
         List<CardSO> tempDeck = new List<CardSO>();
         tempDeck.AddRange(deck);
 
-        int iterations = 0;
-        while (tempDeck.Count > 0 && iterations < 250)
+
+        while (tempDeck.Count > 0)
         {
             int selected = Random.Range(0, tempDeck.Count);
             activeCards.Add(tempDeck[selected]);
             tempDeck.RemoveAt(selected);
-
-            iterations++;
         }
     }
 
@@ -91,17 +90,47 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public void EnemyDraw()
+    public void EnemyDraw(int key)
     {
-
-        for (int i = 0; i < startHandSize; i++)
+        if(key == 1)
         {
-            if(activeCards.Count == 0)
+            for (int i = 0; i < startHandSize; i++)
             {
-                SetUpDeck();
+                if (activeCards.Count == 0)
+                {
+                    SetUpDeck();
+                }
+               
+                cardsInEnemyHand.Add(activeCards[0]);
+                activeCards.RemoveAt(0);
             }
+        }
+
+        if (key == 0)
+        {          
             cardsInEnemyHand.Add(activeCards[0]);
             activeCards.RemoveAt(0);
+        }
+    }
+
+    public void PlayCardtest(EnemyCard card, CardPlacePoint selectedPlace)
+    {
+        StartCoroutine(PlayCardtestCo(card, selectedPlace));
+    }
+
+    IEnumerator PlayCardtestCo(EnemyCard card, CardPlacePoint selectedPlace)
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        card.MoveCardToPosition(selectedPlace.transform.position, placeRotation.transform.rotation);
+
+        selectedPlace.enemyCard = card;
+
+        BattleController.instance.SpendMana(1, card.data.manaCost);
+
+        if (cardsInEnemyHand.Count > 0)
+        {
+            cardsInEnemyHand.RemoveAt(0);
         }
     }
 

@@ -27,7 +27,8 @@ public class BattleController : MonoBehaviour
     public int enemyCurrentLP, enemyCurrentMana;
     public int enemyStartMana, enemyMaxMana;
 
-    [HideInInspector] public int drawManaCost;
+    //[HideInInspector] 
+    public int drawManaCost;
 
     [Header("States")]
     public string STATE;
@@ -36,6 +37,7 @@ public class BattleController : MonoBehaviour
     public PlayerAttack playerAttack = new PlayerAttack();
     public EnemyAction enemyAction = new EnemyAction();
     public EnemyAttack enemyAttack = new EnemyAttack();
+    public BattleEnded battleEnded = new BattleEnded();
 
     //Battle
     public Transform discardPile;
@@ -132,6 +134,7 @@ public class BattleController : MonoBehaviour
             {
                 playerCurrentLP = 0;
                 Debug.Log("You Lose");
+                SwitchState(battleEnded);
             }
         }
         if (key == 1)
@@ -141,6 +144,7 @@ public class BattleController : MonoBehaviour
             {
                 enemyCurrentLP = 0;
                 Debug.Log("You Win");
+                SwitchState(battleEnded);
             }
         }
         UIController.instance.ShowDamageIndicator(key, amount);

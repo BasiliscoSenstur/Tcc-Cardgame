@@ -37,7 +37,7 @@ public class CardPointsController : MonoBehaviour
         {
             if (playerPoints[i].playerCard != null)
             {
-                if (enemyPoints[i].enemyCard != null)
+                if (enemyPoints[i].enemyCard != null && BattleController.instance.currentState != BattleController.instance.battleEnded)
                 {
                     playerPoints[i].playerCard.ChangeAnimation("Card_Attack");
                     enemyPoints[i].enemyCard.enemyCardHealth -= playerPoints[i].playerCard.data.attack;
@@ -62,15 +62,21 @@ public class CardPointsController : MonoBehaviour
                 }
                 else
                 {
-                    playerPoints[i].playerCard.ChangeAnimation("Card_Attack");
-                    BattleController.instance.DemageLifePoints(1, playerPoints[i].playerCard.data.attack);
-                    Debug.Log("Direct Attack " + (i + 1));
+                    if (BattleController.instance.currentState != BattleController.instance.battleEnded)
+                    {
+                        Debug.Log("Direct Attack " + (i + 1));
+                        playerPoints[i].playerCard.ChangeAnimation("Card_Attack");
+                        BattleController.instance.DemageLifePoints(1, playerPoints[i].playerCard.data.attack);
+                    }
                 }
                 yield return new WaitForSeconds(timeBetweenAttacks);
                 playerPoints[i].playerCard.ChangeAnimation("Card_Idle");
             }
         }
-        BattleController.instance.SwitchState(BattleController.instance.enemyAction);
+        if(BattleController.instance.currentState != BattleController.instance.battleEnded)
+        {
+            BattleController.instance.SwitchState(BattleController.instance.enemyAction);
+        }
     }
 
 
@@ -89,10 +95,12 @@ public class CardPointsController : MonoBehaviour
             {
                 if (playerPoints[i].playerCard != null)
                 {
+                    //Attack
                     enemyPoints[i].enemyCard.ChangeAnimation("Card_Attack");
                     playerPoints[i].playerCard.playerCardHealth -= enemyPoints[i].enemyCard.data.attack;
                     playerPoints[i].playerCard.ChangeAnimation("Card_Hurt");
 
+                    //Destruição da carta do player 
                     if (playerPoints[i].playerCard.playerCardHealth <= 0)
                     {
                         playerPoints[i].playerCard.ChangeAnimation("Card_Jump");
@@ -112,14 +120,20 @@ public class CardPointsController : MonoBehaviour
                 }
                 else
                 {
-                    enemyPoints[i].enemyCard.ChangeAnimation("Card_Attack");
-                    BattleController.instance.DemageLifePoints(0, enemyPoints[i].enemyCard.data.attack);
-                    Debug.Log("Direct Attack " + (i + 1));
+                    if (BattleController.instance.currentState != BattleController.instance.battleEnded)
+                    {
+                        Debug.Log("Direct Attack " + (i + 1));
+                        enemyPoints[i].enemyCard.ChangeAnimation("Card_Attack");
+                        BattleController.instance.DemageLifePoints(0, enemyPoints[i].enemyCard.data.attack);
+                    }
                 }
                 yield return new WaitForSeconds(timeBetweenAttacks);
                 enemyPoints[i].enemyCard.ChangeAnimation("Card_Idle");
             }
         }
-        BattleController.instance.SwitchState(BattleController.instance.playerAction);
+        if (BattleController.instance.currentState != BattleController.instance.battleEnded)
+        {
+            BattleController.instance.SwitchState(BattleController.instance.playerAction);
+        }
     }
 }

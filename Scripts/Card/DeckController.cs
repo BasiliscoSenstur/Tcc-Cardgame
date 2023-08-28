@@ -14,7 +14,7 @@ public class DeckController : MonoBehaviour
     public List<CardSO> activeCards = new List<CardSO>();
     [SerializeField] Card card;
 
-    public Transform field;
+    //public Transform field;
 
     void Start()
     {
@@ -33,14 +33,11 @@ public class DeckController : MonoBehaviour
         List<CardSO> tempDeck = new List<CardSO>();
         tempDeck.AddRange(deck);
 
-        int iterations = 0;
-        while (tempDeck.Count > 0 && iterations < 250) 
+        while (tempDeck.Count > 0) 
         {
             int selected = Random.Range(0, tempDeck.Count);
             activeCards.Add(tempDeck[selected]);
             tempDeck.RemoveAt(selected);
-
-            iterations++;
         }
     }
     public void DrawCard()

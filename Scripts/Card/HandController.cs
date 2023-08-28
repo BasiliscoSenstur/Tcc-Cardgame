@@ -64,5 +64,4 @@ public class HandController : MonoBehaviour
         heldCards.Add(cardToAdd);
         SetUpPositionInHand();
     }
-
 }

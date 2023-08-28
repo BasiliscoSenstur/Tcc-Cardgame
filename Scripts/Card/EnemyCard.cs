@@ -31,6 +31,9 @@ public class EnemyCard : MonoBehaviour
     [SerializeField] Animator anim;
     string currentState;
 
+    public bool inEnemyHand;
+    public int positionInEnemyHand;
+
     void Start()
     {
         targetPosition = transform.position;
