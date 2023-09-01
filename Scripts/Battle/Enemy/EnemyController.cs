@@ -100,37 +100,19 @@ public class EnemyController : MonoBehaviour
                 {
                     SetUpDeck();
                 }
-               
                 cardsInEnemyHand.Add(activeCards[0]);
                 activeCards.RemoveAt(0);
             }
         }
 
         if (key == 0)
-        {          
+        {
+            if (activeCards.Count == 0)
+            {
+                SetUpDeck();
+            }
             cardsInEnemyHand.Add(activeCards[0]);
             activeCards.RemoveAt(0);
-        }
-    }
-
-    public void PlayCardtest(EnemyCard card, CardPlacePoint selectedPlace)
-    {
-        StartCoroutine(PlayCardtestCo(card, selectedPlace));
-    }
-
-    IEnumerator PlayCardtestCo(EnemyCard card, CardPlacePoint selectedPlace)
-    {
-        yield return new WaitForSeconds(0.2f);
-
-        card.MoveCardToPosition(selectedPlace.transform.position, placeRotation.transform.rotation);
-
-        selectedPlace.enemyCard = card;
-
-        BattleController.instance.SpendMana(1, card.data.manaCost);
-
-        if (cardsInEnemyHand.Count > 0)
-        {
-            cardsInEnemyHand.RemoveAt(0);
         }
     }
 
@@ -150,6 +132,7 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
         newEnemyCard.MoveCardToPosition(selectedPlace.transform.position, placeRotation.transform.rotation);
+        AudioManager.instance.PlaySoundFx(3);
 
         selectedPlace.enemyCard = newEnemyCard;
 

@@ -1206,12 +1206,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9974e9c719d97b5429683fe6478df2db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLifePoints: 3
+  playerLifePoints: 20
   playerCurrentLP: 0
   playerCurrentMana: 0
   playerStartMana: 5
   playerMaxMana: 27
-  enemyLifePoints: 100
+  enemyLifePoints: 20
   enemyCurrentLP: 0
   enemyCurrentMana: 0
   enemyStartMana: 10

@@ -44,14 +44,6 @@ public class BattleController : MonoBehaviour
     public List<CardPlacePoint> enemyCardPoints;
     public List<CardPlacePoint> playerCardPoints;
 
-    //public List<CardPlacePoint> availablePoints;
-    //public List<CardSO> availableCards;
-
-    //public int randomCard, randomPoint;
-
-    //public List<CardPlacePoint> offensivePlacePoints;
-    //public List<CardPlacePoint> deffensivePlacePoints;
-
     void Start()
     {
         //Enemy points
@@ -135,6 +127,12 @@ public class BattleController : MonoBehaviour
                 playerCurrentLP = 0;
                 Debug.Log("You Lose");
                 SwitchState(battleEnded);
+
+                //if(AudioManager.instance.musicPlaying != null)
+                //{
+                //    AudioManager.instance.musicPlaying.Stop();
+                //}
+                //AudioManager.instance.PlayMusic(2);
             }
         }
         if (key == 1)
@@ -152,6 +150,7 @@ public class BattleController : MonoBehaviour
 
     public void EndTurn()
     {
+        AudioManager.instance.PlaySoundFx(4);
         if (playerAction.turn == 0)
         {
             SwitchState(enemyAction);

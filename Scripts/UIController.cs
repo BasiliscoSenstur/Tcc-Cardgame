@@ -36,6 +36,8 @@ public class UIController : MonoBehaviour
     public CanvasGroup endBattleScreen;
     public TMP_Text battleResult;
 
+    public GameObject pauseScreen;
+
     void Start()
     {
 
@@ -61,6 +63,11 @@ public class UIController : MonoBehaviour
             manaWarning.SetActive(false);
             manaWarningCounter = 0f;
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseUnpause();
+        }
     }
 
     public void UpdateManaDisplay(int key)
@@ -85,12 +92,14 @@ public class UIController : MonoBehaviour
     {
         if (BattleController.instance.playerCurrentMana >= BattleController.instance.drawManaCost)
         {
+            AudioManager.instance.PlaySoundFx(4);
             DeckController.instance.DrawCard();
             BattleController.instance.SpendMana(0, BattleController.instance.drawManaCost);
             BattleController.instance.drawManaCost++;
         }
         else
         {
+            AudioManager.instance.PlaySoundFx(5);
             ShowManaWarning();
             manaDrawButton.SetActive(false);
         }
@@ -116,15 +125,39 @@ public class UIController : MonoBehaviour
 
     public void MainMenu()
     {
+        AudioManager.instance.PlaySoundFx(4);
         SceneManager.LoadScene(0);
+        AudioManager.instance.PlayMusic(0);
+        Time.timeScale = 1;
+
     }    
     public void PlayAgain()
     {
+        AudioManager.instance.PlaySoundFx(4);
         string currentScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentScene);
+        Time.timeScale = 1;
     }    
     public void SelectAnotherBattle()
     {
+        AudioManager.instance.PlaySoundFx(4);
         SceneManager.LoadScene(1);
+        Time.timeScale = 1;
+
+        AudioManager.instance.PlayMusic(1);
+    }
+
+    public void PauseUnpause()
+    {
+        if(pauseScreen.activeSelf == true)
+        {
+            pauseScreen.SetActive(false);
+            Time.timeScale = 1;
+        }
+        else
+        {
+            pauseScreen.SetActive(true);
+            Time.timeScale = 0;
+        }
     }
 }

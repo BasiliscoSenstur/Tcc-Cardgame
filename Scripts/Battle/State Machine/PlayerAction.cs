@@ -20,10 +20,12 @@ public class PlayerAction : BattleAbstract
         if (turn == 0)
         {
             DeckController.instance.DrawMultiple(startingHand);
+            AudioManager.instance.PlaySoundFx(3);
         }
         else
         {
             DeckController.instance.DrawCard();
+            AudioManager.instance.PlaySoundFx(3);
             if (battle.playerCurrentMana < battle.playerMaxMana)
             {
                 battle.playerCurrentMana++;

@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class BattleEnded : BattleAbstract
@@ -52,6 +51,13 @@ public class BattleEnded : BattleAbstract
         else
         {
             UIController.instance.battleResult.text = "You Won!";
+
+            if (AudioManager.instance.musicPlaying != null)
+            {
+                AudioManager.instance.musicPlaying.Stop();
+                Debug.Log("Teste");
+            }
+            //AudioManager.instance.PlayMusic(3);
         }
 
         yield return new WaitForSeconds(0.54f);

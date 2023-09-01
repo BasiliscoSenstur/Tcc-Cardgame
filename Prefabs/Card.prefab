@@ -66,7 +66,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Description
+  m_text: The Chomper, a creature with voracious appetite, boasts rows of sharp teeth
+    and a relentless drive to consume, its presence a reminder of the balance between
+    survival and excess.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 47e3d962f65bea1448d0e27c04a1022f, type: 2}
   m_sharedMaterial: {fileID: -3918541704936188591, guid: 47e3d962f65bea1448d0e27c04a1022f,
@@ -94,7 +96,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27
+  m_fontSize: 14.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -130,7 +132,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -97.33773, y: -3.6776717, z: -129.34512, w: 0.5280265}
+  m_margin: {x: -97.33773, y: -3.6776717, z: -116.38034, w: 0.5280265}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -294,7 +296,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Name
+  m_text: Chomper
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 47e3d962f65bea1448d0e27c04a1022f, type: 2}
   m_sharedMaterial: {fileID: -3918541704936188591, guid: 47e3d962f65bea1448d0e27c04a1022f,
@@ -753,7 +755,7 @@ Transform:
   m_Children:
   - {fileID: 4169024017832356220}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &273824764918461840
 BoxCollider:
@@ -1034,7 +1036,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -81}
+  m_AnchoredPosition: {x: 6, y: -81}
   m_SizeDelta: {x: 96.71, y: 83.94}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4697456546179365601
@@ -1065,7 +1067,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lore
+  m_text: The Chomper, driven by insatiable hunger, symbolizes the balance between
+    survival and excess, a reminder of the primal instincts within us all.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 47e3d962f65bea1448d0e27c04a1022f, type: 2}
   m_sharedMaterial: {fileID: -3918541704936188591, guid: 47e3d962f65bea1448d0e27c04a1022f,
@@ -1129,7 +1132,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -97.33773, y: 3.4050808, z: -126.63612, w: 2.767189}
+  m_margin: {x: -97.33773, y: 3.4050808, z: -113.86023, w: 2.767189}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1171,7 +1174,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 31, y: -125}
+  m_AnchoredPosition: {x: -9, y: -125}
   m_SizeDelta: {x: 96.70996, y: 245.94}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7270230016856687867

@@ -35,6 +35,7 @@ public class EnemyAction : BattleAbstract
         if (battle.playerAction.turn > 0)
         {
             EnemyController.instance.EnemyDraw(0);
+            EnemyController.instance.EnemyDraw(0);
         }
 
         battle.RefillMana(1);

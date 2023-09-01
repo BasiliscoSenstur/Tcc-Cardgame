@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da2bbdba4250714eb08d7cee807724a, type: 3}
+  m_Name: 3
+  m_EditorClassIdentifier: 
+  cardOwner: 0
+  attack: 3
+  health: 3
+  manaCost: 2
+  cardName: Envy
+  description: Envy, a consuming emotion, festers like a venomous serpent, its green
+    eyes filled with covetous desire and bitter resentment.
+  lore: ' Envy, a consuming emotion, fuels ambition but also breeds bitterness, a
+    cautionary reminder of the importance of gratitude and contentment.'
+  background: {fileID: 21300000, guid: 87ef39150fb6c3443b69613ff7baabbf, type: 3}
+  character: {fileID: 21300000, guid: f32a58addd348c84c92812aa81bccf8f, type: 3}

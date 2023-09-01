@@ -70,6 +70,7 @@ public class Card : MonoBehaviour
                     {
                         selectedPoint.playerCard = this;
                         BattleController.instance.SpendMana(0, data.manaCost);
+                        AudioManager.instance.PlaySoundFx(3);
                         MoveCardToPosition(selectedPoint.transform.position, HandController.instance.maxPos.rotation);
 
                         isSelected = false;
@@ -82,6 +83,7 @@ public class Card : MonoBehaviour
                 {
                     if (BattleController.instance.playerCurrentMana < data.manaCost)
                     {
+                        AudioManager.instance.PlaySoundFx(5);
                         UIController.instance.ShowManaWarning();
                     }
                     ReturnToHand();
@@ -146,7 +148,7 @@ public class Card : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if(BattleController.instance.currentState == BattleController.instance.playerAction)
+        if(BattleController.instance.currentState == BattleController.instance.playerAction && Time.timeScale == 1)
         {
             if (inHand)
             {

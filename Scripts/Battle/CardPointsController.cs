@@ -42,6 +42,7 @@ public class CardPointsController : MonoBehaviour
                     playerPoints[i].playerCard.ChangeAnimation("Card_Attack");
                     enemyPoints[i].enemyCard.enemyCardHealth -= playerPoints[i].playerCard.data.attack;
                     enemyPoints[i].enemyCard.ChangeAnimation("Card_Hurt");
+                    AudioManager.instance.PlaySoundFx(2);
 
                     if (enemyPoints[i].enemyCard.enemyCardHealth <= 0)
                     {
@@ -49,6 +50,7 @@ public class CardPointsController : MonoBehaviour
 
                         yield return new WaitForSeconds(0.12f);
 
+                        AudioManager.instance.PlaySoundFx(1);
                         enemyPoints[i].enemyCard.MoveCardToPosition(BattleController.instance.discardPile.position, BattleController.instance.discardPile.rotation);
                         Destroy(enemyPoints[i].enemyCard.gameObject, 1.33f);
                         enemyPoints[i].enemyCard = null;
@@ -62,10 +64,12 @@ public class CardPointsController : MonoBehaviour
                 }
                 else
                 {
+                    //Direct Attack
                     if (BattleController.instance.currentState != BattleController.instance.battleEnded)
                     {
                         Debug.Log("Direct Attack " + (i + 1));
                         playerPoints[i].playerCard.ChangeAnimation("Card_Attack");
+                        AudioManager.instance.PlaySoundFx(0);
                         BattleController.instance.DemageLifePoints(1, playerPoints[i].playerCard.data.attack);
                     }
                 }
@@ -97,6 +101,7 @@ public class CardPointsController : MonoBehaviour
                 {
                     //Attack
                     enemyPoints[i].enemyCard.ChangeAnimation("Card_Attack");
+                    AudioManager.instance.PlaySoundFx(2);
                     playerPoints[i].playerCard.playerCardHealth -= enemyPoints[i].enemyCard.data.attack;
                     playerPoints[i].playerCard.ChangeAnimation("Card_Hurt");
 
@@ -107,6 +112,7 @@ public class CardPointsController : MonoBehaviour
 
                         yield return new WaitForSeconds(0.12f);
 
+                        AudioManager.instance.PlaySoundFx(1);
                         playerPoints[i].playerCard.MoveCardToPosition(BattleController.instance.discardPile.position, BattleController.instance.discardPile.rotation);
                         Destroy(playerPoints[i].playerCard.gameObject, 1.33f);
                         playerPoints[i].playerCard = null;
@@ -120,10 +126,12 @@ public class CardPointsController : MonoBehaviour
                 }
                 else
                 {
+                    //Direct Attack
                     if (BattleController.instance.currentState != BattleController.instance.battleEnded)
                     {
                         Debug.Log("Direct Attack " + (i + 1));
                         enemyPoints[i].enemyCard.ChangeAnimation("Card_Attack");
+                        AudioManager.instance.PlaySoundFx(0);
                         BattleController.instance.DemageLifePoints(0, enemyPoints[i].enemyCard.data.attack);
                     }
                 }
